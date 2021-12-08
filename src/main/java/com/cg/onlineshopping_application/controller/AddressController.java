@@ -55,8 +55,8 @@ public class AddressController
         return new SuccessMessageDto(ShoppingConstants.ADDRESS_UPDATED+address.getAddressId());
     }
     
-    @GetMapping("/getaddressbyid/{customerId}")
-    public Address viewAddressById(@PathVariable("customerId")Integer id) throws AddressIdException 
+    @GetMapping("/getaddressbyid/{addressId}")
+    public Address viewAddressById(@PathVariable("addressId")Integer id) throws AddressIdException 
     {
     
         return addressService.viewAddress(id);    
@@ -67,10 +67,4 @@ public class AddressController
     {
         return addressService.viewAllAddress();    
     }
-    
-    /*@GetMapping("/getaddressdata/{customerId}")
-    public Address getAddressData(@PathVariable("customerId") Integer customerId) {
-        Address address = addressService.getAddressData(customerId);
-        return address;
-    }*/
 }

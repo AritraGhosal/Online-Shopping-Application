@@ -18,7 +18,6 @@ public class User
 	private String password;
 	private String role;
 	
-	@JsonIgnore
 	@OneToOne(mappedBy="user")
 	private Customer cus;
 

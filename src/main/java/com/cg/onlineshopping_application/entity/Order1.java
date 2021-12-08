@@ -21,16 +21,13 @@ public class Order1 {
 	private LocalDate ordDate;
 	
 	@OneToOne
-	@JsonIgnore
 	private Customer customer;
 	
 	
 	@OneToOne
-	@JsonIgnore
 	private Address address;
 
 	@OneToOne
-	@JsonIgnore
 	private Cart cart;
 
 

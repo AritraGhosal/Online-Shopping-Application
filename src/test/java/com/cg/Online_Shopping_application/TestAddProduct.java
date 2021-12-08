@@ -1,4 +1,4 @@
-package com.cg.Online_Shopping_application;
+ package com.cg.Online_Shopping_application;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -60,20 +60,6 @@ public class TestAddProduct {
 	@Test
 	public void addProduct3() throws ValidateProductException, CategoryNotFoundException {
 		ProductDto dto = new ProductDto("iphone",0,"gold","13x13x3","A14","Apple",10,1);
-	
-		assertThrows(ValidateProductException.class,()->productService.addProduct(dto));
-	}
-	
-	@Test
-	public void addProduct4() throws ValidateProductException, CategoryNotFoundException {
-		ProductDto dto = new ProductDto("iphone",10000,null,"13x13x3","A14","Apple",10,1);
-	
-		assertThrows(ValidateProductException.class,()->productService.addProduct(dto));
-	}
-	
-	@Test
-	public void addProduct5() throws ValidateProductException, CategoryNotFoundException {
-		ProductDto dto = new ProductDto("iphone",10000,"gold","13x13x3","A14","Apple",0,1);
 	
 		assertThrows(ValidateProductException.class,()->productService.addProduct(dto));
 	}

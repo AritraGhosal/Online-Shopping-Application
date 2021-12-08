@@ -70,27 +70,9 @@ public class TestEditOrder {
 		Order1Dto dto = new Order1Dto(1,"",LocalDate.of(2021, 03, 02),1,1,1);
 		assertThrows(ValidateOrderException.class,()->orderService.updateOrder(dto));
 	}
-	
+
 	@Test
 	public void testEditOrder3() throws OrderIdException, ValidateOrderException, CustomerNotFoundException, AddressNotFoundException, ProductNotFoundException, CartNotFoundException {
-		Order1Dto dto = new Order1Dto(1,"Confirmed",LocalDate.of(2021, 03, 02),2,1,1);
-		assertThrows(CustomerNotFoundException.class,()->orderService.updateOrder(dto));
-	}
-	
-	@Test
-	public void testEditOrder4() throws OrderIdException, ValidateOrderException, CustomerNotFoundException, AddressNotFoundException, ProductNotFoundException, CartNotFoundException {
-		Order1Dto dto = new Order1Dto(1,"Confirmed",LocalDate.of(2021, 03, 02),1,2,1);
-		assertThrows(AddressNotFoundException.class,()->orderService.updateOrder(dto));
-	}
-	
-	@Test
-	public void testEditOrder5() throws OrderIdException, OrderIdException, ValidateOrderException, CustomerNotFoundException, AddressNotFoundException, ProductNotFoundException, CartNotFoundException {
-		Order1Dto dto = new Order1Dto(1,"Confirmed",LocalDate.of(2021, 03, 02),1,1,2);
-		assertThrows(ProductNotFoundException.class,()->orderService.updateOrder(dto));
-	}
-	
-	@Test
-	public void testEditOrder6() throws OrderIdException, ValidateOrderException, CustomerNotFoundException, AddressNotFoundException, ProductNotFoundException, CartNotFoundException {
 		Order1Dto dto = new Order1Dto(2,"Confirmed",LocalDate.of(2021, 03, 02),1,1,1);
 		assertThrows(OrderIdException.class,()->orderService.updateOrder(dto));
 	}

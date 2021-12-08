@@ -19,11 +19,9 @@ public class Cart {
 	private Integer cartId;
 	
 	@ManyToOne
-	//@JoinColumn(name="product_id",referencedColumnName ="product_id")
 	private Product product;
 	
 	@ManyToOne
-	//@JoinColumn(name="customer_id",referencedColumnName = "customer_id")
 	private Customer customer;
 	
 	public Integer getCartId() {

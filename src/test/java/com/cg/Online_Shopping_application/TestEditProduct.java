@@ -51,16 +51,4 @@ public class TestEditProduct {
 		ProductDto dto = new ProductDto(1,"iphone12",10000.00,"black","34x12x3","A14","apple",12,1);
 		assertNotNull(productService.updateProduct(dto));
 	}
-	
-	@Test
-	public void testEditProduct2() throws ValidateProductException, CategoryNotFoundException, ProductNotFoundException, ProductIdException {
-		ProductDto dto = new ProductDto(1,"iphone12",10000.00,"black","34x12x3","A14","apple",12,2);
-		assertThrows(CategoryNotFoundException.class,()->productService.addProduct(dto));
-	}
-	
-	@Test
-	public void testEditProduct3() throws ValidateProductException, CategoryNotFoundException, ProductNotFoundException, ProductIdException {
-		ProductDto dto = new ProductDto(2,"iphone12",10000.00,"black","34x12x3","A14","apple",12,1);
-		assertThrows(ProductIdException.class,()->productService.addProduct(dto));
-	}
 }

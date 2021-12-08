@@ -62,32 +62,14 @@ public class TestAddOrder {
 	}
 	
 	@Test
-	public void testAddOrder1() throws ValidateOrderException, CustomerNotFoundException, AddressNotFoundException, ProductNotFoundException, CartNotFoundException {
-		Order1Dto dto = new Order1Dto("Confirmed",LocalDate.of(2021, 03, 02),1,1,3);
-		assertNotNull(orderService.addOrder(dto));
-	}
-	
-	@Test
-	public void testAddOrder2() throws ValidateOrderException, CustomerNotFoundException, AddressNotFoundException, ProductNotFoundException {
+	public void testAddOrder1() throws ValidateOrderException, CustomerNotFoundException, AddressNotFoundException, ProductNotFoundException {
 		Order1Dto dto = new Order1Dto("",LocalDate.of(2021, 03, 02),1,1,1);
 		assertThrows(ValidateOrderException.class,()->orderService.addOrder(dto));
 	}
 	
 	@Test
-	public void testAddOrder3() throws ValidateOrderException, CustomerNotFoundException, AddressNotFoundException, ProductNotFoundException {
+	public void testAddOrder2() throws ValidateOrderException, CustomerNotFoundException, AddressNotFoundException, ProductNotFoundException {
 		Order1Dto dto = new Order1Dto("Confirmed",LocalDate.of(2021, 03, 02),2,1,1);
 		assertThrows(CustomerNotFoundException.class,()->orderService.addOrder(dto));
-	}
-	
-	@Test
-	public void testAddOrder4() throws ValidateOrderException, CustomerNotFoundException, AddressNotFoundException, ProductNotFoundException {
-		Order1Dto dto = new Order1Dto("Confirmed",LocalDate.of(2021, 03, 02),1,1,1);
-		assertThrows(AddressNotFoundException.class,()->orderService.addOrder(dto));
-	}
-	
-	@Test
-	public void testAddOrder5() throws ValidateOrderException, CustomerNotFoundException, AddressNotFoundException, ProductNotFoundException {
-		Order1Dto dto = new Order1Dto("Confirmed",LocalDate.of(2021, 03, 02),1,1,2);
-		assertThrows(ProductNotFoundException.class,()->orderService.addOrder(dto));
 	}
 }

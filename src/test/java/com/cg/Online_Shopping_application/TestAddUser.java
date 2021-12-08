@@ -39,22 +39,5 @@ public class TestAddUser {
 		LoginDto dto = new LoginDto("sample@gmail.com","Aabc@1234","ADMIN");
 		assertNotNull(loginService.addUser(dto));
 	}
-	
-	@Test
-	public void testAddUser2() throws ValidateUserException {
-		LoginDto dto = new LoginDto("sample/gmail.com","Aabc@1234","ADMIN");
-		assertThrows(ValidateUserException.class,()->loginService.addUser(dto));
-	}
-	
-	@Test
-	public void testAddUser3() throws ValidateUserException {
-		LoginDto dto = new LoginDto("sample@gmail.com","aabc1234","ADMIN");
-		assertThrows(ValidateUserException.class,()->loginService.addUser(dto));
-	}
-	
-	@Test
-	public void testAddUser4() throws ValidateUserException {
-		LoginDto dto = new LoginDto("sample@gmail.com","Aabc@1234","VENDOR");
-		assertThrows(ValidateUserException.class,()->loginService.addUser(dto));
-	}
+
 }

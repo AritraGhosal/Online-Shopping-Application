@@ -22,18 +22,11 @@ import com.cg.onlineshopping_application.service.ILoginServiceImp;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
-//    @Autowired
-//    private BCryptPasswordEncoder bCryptPasswordEncoder;
-    
     @Bean
     public UserDetailsService userDetailsService() {
         return new ILoginServiceImp();
     }
-     
-//    @Bean
-//    public BCryptPasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -65,12 +58,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .authenticated()
                 .and()
                 .csrf().disable();
-                //.cors().disable();
-                //.formLogin()
-                //.usernameParameter("username")
-                //.passwordParameter("password")
-                //.and()
-                //.logout();
     }
  
 }

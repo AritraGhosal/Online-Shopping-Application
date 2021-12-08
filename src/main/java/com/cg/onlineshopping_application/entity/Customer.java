@@ -21,12 +21,11 @@ public class Customer
 	@OneToOne
 	private User user;
 	
-	@JsonIgnore
+
 	@OneToOne(mappedBy="customer")
 	private Address address;
 	
 
-	@JsonIgnore
 	@OneToOne(mappedBy="customer")
 	private Order1 ord;
 
