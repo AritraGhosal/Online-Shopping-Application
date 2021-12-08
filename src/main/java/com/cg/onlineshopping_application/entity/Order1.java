@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,20 +17,25 @@ public class Order1 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer ordId;
+	@NotBlank
 	private String ordStatus;
+	@NotBlank
 	private LocalDate ordDate;
 	
 	@OneToOne
 	@JsonIgnore
+	@NotBlank
 	private Customer customer;
 	
 	
 	@OneToOne
 	@JsonIgnore
+	@NotBlank
 	private Address address;
 
 	@OneToOne
 	@JsonIgnore
+	@NotBlank
 	private Cart cart;
 
 

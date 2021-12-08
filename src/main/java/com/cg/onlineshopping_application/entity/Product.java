@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,15 +25,21 @@ public class Product
 	
 	@Column(name="productName",unique=true)
 	private String productName;
-
+	@NotBlank
 	private double price;
+	@NotBlank
 	private String color;
+	@NotBlank
 	private String dimension;
+	@NotBlank
 	private String specification;
+	@NotBlank
 	private String manufacturer;
+	@NotBlank
 	private int quantity;
 	
 	@ManyToOne
+	@NotBlank
 	private Category category;
 	
 
