@@ -1,7 +1,7 @@
 package com.cg.onlineshopping_application.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -13,13 +13,9 @@ public class Customer
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer customerId;
-	@NotBlank
 	private String firstName;
-	@NotBlank
 	private String lastName;
-	@NotBlank
 	private String mobileNumber;
-	@NotBlank
 	private String email;
 	
 	@OneToOne

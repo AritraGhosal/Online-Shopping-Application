@@ -12,4 +12,5 @@ public interface IAddressRepository extends JpaRepository<Address,Integer>{
 	
 	@Query("FROM Address a inner Join a.customer c WHERE c.customerId = :customerId")
     public Address getAddressByCustomerId(@Param("customerId") Integer customerId);
+
 }

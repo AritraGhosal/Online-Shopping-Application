@@ -20,12 +20,10 @@ public class Cart {
 	
 	@ManyToOne
 	//@JoinColumn(name="product_id",referencedColumnName ="product_id")
-	@NotBlank
 	private Product product;
 	
 	@ManyToOne
 	//@JoinColumn(name="customer_id",referencedColumnName = "customer_id")
-	@NotBlank
 	private Customer customer;
 	
 	public Integer getCartId() {

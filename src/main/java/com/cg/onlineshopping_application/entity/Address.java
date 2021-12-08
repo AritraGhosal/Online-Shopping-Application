@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Address {
@@ -13,21 +12,14 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int addressId;
-	@NotBlank
 	private String streetNo;
-	@NotBlank
 	private String buildingName;
-	@NotBlank
 	private String  city;
-	@NotBlank
 	private String state;
-	@NotBlank
 	private String country;
-	@NotBlank
 	private String pincode;
 	
 	@OneToOne
-	@NotBlank
 	private Customer customer;
 
 	public int getAddressId() {

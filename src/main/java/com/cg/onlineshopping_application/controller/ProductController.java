@@ -40,12 +40,12 @@ public class ProductController
     @Autowired
     IProductServiceImp prodservice;
     
-    @ResponseBody
+ /*   @ResponseBody
     @RequestMapping("/all")
     public String showAll()
     {
     	return "HiHello";
-    }
+    }*/
     
     @PostMapping("/addproduct")
     public ResponseEntity<String> addProduct(@Valid @RequestBody ProductDto productdto, BindingResult br)

@@ -35,19 +35,19 @@ public class CustomerController
         ICustomerServiceImp customerService;
         
         
-//        @PostMapping("/addcustomer")
-//        public SuccessMessageDto addCustomer(@RequestBody CustomerDto customerDto) throws ValidateCustomerException, UserNotFoundException
-//        {
-//            Customer customer= customerService.addCustomer(customerDto);
-//            return new SuccessMessageDto(ShoppingConstants.CUSTOMER_ADDED+ customer.getCustomerId());
-//        }
-        
         @PostMapping("/addcustomer")
+        public SuccessMessageDto addCustomer(@RequestBody CustomerDto customerDto) throws ValidateCustomerException, UserNotFoundException
+        {
+            Customer customer= customerService.addCustomer(customerDto);
+            return new SuccessMessageDto(ShoppingConstants.CUSTOMER_ADDED+ customer.getCustomerId());
+        }
+        
+        /*@PostMapping("/addcustomer")
         public Customer addCustomer(@RequestBody CustomerDto customerDto) throws ValidateCustomerException, UserNotFoundException
         {
             Customer customer= customerService.addCustomer(customerDto);
             return customer;
-        }
+        }*/
         
         @DeleteMapping("/removecustomer/{id}")
         public SuccessMessageDto removeCustomer(@PathVariable("id") Integer id) throws CustomerIdException

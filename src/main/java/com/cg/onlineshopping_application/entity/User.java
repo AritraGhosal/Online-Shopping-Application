@@ -14,11 +14,8 @@ public class User
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer userId;
 	@Email
-	@NotBlank
 	private String userEmail;
-	@NotBlank
 	private String password;
-	@NotBlank
 	private String role;
 	
 	@JsonIgnore
