@@ -20,15 +20,14 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.cg.onlineshopping_application.dto.CategoryDto;
-import com.cg.onlineshopping_application.entity.Category;
-import com.cg.onlineshopping_application.entity.Product;
 import com.cg.onlineshopping_application.exception.CategoryIdException;
 import com.cg.onlineshopping_application.exception.ProductIdException;
 import com.cg.onlineshopping_application.exception.ValidateCategoryException;
+import com.cg.onlineshopping_application.model.Category;
+import com.cg.onlineshopping_application.model.Product;
 import com.cg.onlineshopping_application.service.ICategoryServiceImp;
-import com.cg.onlineshopping_application.util.ShoppingConstants;
+import com.cg.onlineshopping_application.util.FixedValues;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
@@ -73,7 +72,7 @@ public class CategoryController {
 		try {
 			categoryService.deleteCategory(id);
 		} catch (Exception ex) {
-			throw new ValidateCategoryException(ex.getMessage());// "Category Not Deleted");
+			throw new ValidateCategoryException(ex.getMessage());
 		}
 		return new ResponseEntity<String>("Category Deleted.", HttpStatus.OK);
 	}

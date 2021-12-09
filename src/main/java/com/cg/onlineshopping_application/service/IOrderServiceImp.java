@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.cg.onlineshopping_application.entity.*;
 import com.cg.onlineshopping_application.exception.*;
+import com.cg.onlineshopping_application.model.*;
 import com.cg.onlineshopping_application.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.onlineshopping_application.dto.Order1Dto;
-import com.cg.onlineshopping_application.util.ShoppingConstants;
+import com.cg.onlineshopping_application.util.FixedValues;
 
 @Service
 public class IOrderServiceImp implements IOrderService
@@ -37,15 +37,15 @@ public class IOrderServiceImp implements IOrderService
 		
 		Optional<Customer> optCustomer = customerDao.findById(order1Dto.getCustomerId());
 		if (!optCustomer.isPresent())
-			throw new CustomerNotFoundException(ShoppingConstants.CUSTOMER_NOT_FOUND);
+			throw new CustomerNotFoundException(FixedValues.CUSTOMER_NOT_FOUND);
 		
 		Optional<Cart> optCart = cartDao.findById(order1Dto.getCartId());
 		if (!optCart.isPresent())
-			throw new CartNotFoundException(ShoppingConstants.CART_NOT_FOUND);
+			throw new CartNotFoundException(FixedValues.CART_NOT_FOUND);
 		
 		Optional<Address> optAddress = addressDao.findById(order1Dto.getAddressId());
 		if (!optAddress.isPresent())
-			throw new AddressNotFoundException(ShoppingConstants.ADDRESS_NOT_FOUND);
+			throw new AddressNotFoundException(FixedValues.ADDRESS_NOT_FOUND);
 		
 		
 		
@@ -64,18 +64,18 @@ public class IOrderServiceImp implements IOrderService
 		
 		Optional<Order1> optorder = orderDao.findById(order1Dto.getOrdId());
 		if (!optorder.isPresent())
-			throw new OrderIdException(ShoppingConstants.ORDER_NOT_FOUND);
+			throw new OrderIdException(FixedValues.ORDER_NOT_FOUND);
 		Optional<Cart> optCart = cartDao.findById(order1Dto.getCartId());
 		if (!optCart.isPresent())
-			throw new CartNotFoundException(ShoppingConstants.CART_NOT_FOUND);
+			throw new CartNotFoundException(FixedValues.CART_NOT_FOUND);
 		
 		Optional<Address> optAddress = addressDao.findById(order1Dto.getAddressId());
 		if (!optAddress.isPresent())
-			throw new AddressNotFoundException(ShoppingConstants.ADDRESS_NOT_FOUND);
+			throw new AddressNotFoundException(FixedValues.ADDRESS_NOT_FOUND);
 		
 		Optional<Customer> optCustomer = customerDao.findById(order1Dto.getCustomerId());
 		if (!optCustomer.isPresent())
-			throw new CustomerNotFoundException(ShoppingConstants.CUSTOMER_NOT_FOUND);
+			throw new CustomerNotFoundException(FixedValues.CUSTOMER_NOT_FOUND);
 			
 		Order1 order1 = optorder.get();
 		
@@ -91,7 +91,7 @@ public class IOrderServiceImp implements IOrderService
 	
 	public boolean validateOrder(Order1Dto order1Dto) throws ValidateOrderException {
 		if (!order1Dto.getOrdStatus().matches("[A-Za-z0-9]{1,100}")) {
-			throw new ValidateOrderException(ShoppingConstants.STATUS_CANNOT_BE_EMPTY);
+			throw new ValidateOrderException(FixedValues.STATUS_CANNOT_BE_EMPTY);
 		}
 		
 		return true;
@@ -103,7 +103,7 @@ public class IOrderServiceImp implements IOrderService
 		Optional<Order1> optorder = orderDao.findById(ordId);
 
 		if (!optorder.isPresent()) {
-			throw new OrderIdException(ShoppingConstants.ORDER_NOT_FOUND);
+			throw new OrderIdException(FixedValues.ORDER_NOT_FOUND);
 
 		}
 		orderDao.delete(optorder.get());
@@ -114,7 +114,7 @@ public class IOrderServiceImp implements IOrderService
 	public Order1 viewOrder(Integer ordId) throws OrderIdException {
 		Optional<Order1> optorder = orderDao.findById(ordId);
 		if (!optorder.isPresent()) {
-			throw new OrderIdException(ShoppingConstants.ORDER_NOT_FOUND);
+			throw new OrderIdException(FixedValues.ORDER_NOT_FOUND);
 
 		}
 		return optorder.get();	}
@@ -124,7 +124,7 @@ public class IOrderServiceImp implements IOrderService
 		List<Order1> orderlist = orderDao.findAll();
 		Optional<Address> optAddress = addressDao.findById(addressId);
 		if (!optAddress.isPresent())
-			throw new AddressNotFoundException(ShoppingConstants.ADDRESS_NOT_FOUND);
+			throw new AddressNotFoundException(FixedValues.ADDRESS_NOT_FOUND);
 		orderlist.stream()
 		.filter(p ->p.getAddress().getAddressId()==addressId)
 		.collect(Collectors.toList()); 
@@ -136,7 +136,7 @@ public class IOrderServiceImp implements IOrderService
 		List<Order1> orderlist = orderDao.findAll();
 		Optional<Customer> optCustomer = customerDao.findById(customerId);
 		if (!optCustomer.isPresent())
-			throw new CustomerNotFoundException(ShoppingConstants.CUSTOMER_NOT_FOUND);
+			throw new CustomerNotFoundException(FixedValues.CUSTOMER_NOT_FOUND);
 
 		orderlist.stream()
 		.filter(p ->p.getCustomer().getCustomerId()==customerId)

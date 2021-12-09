@@ -26,26 +26,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlineshopping_application.dto.ProductDto;
 import com.cg.onlineshopping_application.dto.SuccessMessageDto;
-import com.cg.onlineshopping_application.entity.Product;
 import com.cg.onlineshopping_application.exception.CategoryNotFoundException;
 import com.cg.onlineshopping_application.exception.ProductIdException;
 import com.cg.onlineshopping_application.exception.ValidateProductException;
+import com.cg.onlineshopping_application.model.Product;
 import com.cg.onlineshopping_application.service.IProductServiceImp;
-import com.cg.onlineshopping_application.util.ShoppingConstants;
+import com.cg.onlineshopping_application.util.FixedValues;
 
 @Controller
-//@RequestMapping("/product")
 public class ProductController 
 {
     @Autowired
     IProductServiceImp prodservice;
-    
- /*   @ResponseBody
-    @RequestMapping("/all")
-    public String showAll()
-    {
-    	return "HiHello";
-    }*/
     
     @PostMapping("/addproduct")
     public ResponseEntity<String> addProduct(@Valid @RequestBody ProductDto productdto, BindingResult br)

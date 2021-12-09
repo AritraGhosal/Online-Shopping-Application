@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 
 import com.cg.onlineshopping_application.configurations.MyUserDetails;
 import com.cg.onlineshopping_application.dto.LoginDto;
-import com.cg.onlineshopping_application.entity.User;
 import com.cg.onlineshopping_application.exception.UserIdException;
 import com.cg.onlineshopping_application.exception.UserNotFoundException;
 import com.cg.onlineshopping_application.exception.ValidateUserException;
+import com.cg.onlineshopping_application.model.User;
 import com.cg.onlineshopping_application.repository.ILoginRepository;
-import com.cg.onlineshopping_application.util.ShoppingConstants;
+import com.cg.onlineshopping_application.util.FixedValues;
 
 @Service
 public class ILoginServiceImp implements ILoginService, UserDetailsService
@@ -26,10 +26,10 @@ public class ILoginServiceImp implements ILoginService, UserDetailsService
 
     
     public User addUser(LoginDto loginDto) throws ValidateUserException {
-        //validateUser(loginDto);
+        
         User user = new User();
         user.setUserEmail(loginDto.getUserEmail());
-        //user.setPassword(BCryptPasswordEncoder.encode(loginDto.getPassword()));
+       
         user.setPassword(loginDto.getPassword());
         user.setRole(loginDto.getRole());
         return userDao.save(user);
@@ -41,12 +41,6 @@ public class ILoginServiceImp implements ILoginService, UserDetailsService
     }
     
     public boolean validateUser(LoginDto loginDto) throws ValidateUserException {
-        //if (!loginDto.getUserEmail().matches(ShoppingConstants.USEREMAIL_PATTERN))
-           // throw new ValidateUserException(ShoppingConstants.USEREMAIL_CANNOT_BE_EMPTY);
-       // if (!loginDto.getPassword().matches(ShoppingConstants.PASSWORD_PATTERN))
-          //  throw new ValidateUserException(ShoppingConstants.PASSWORD_NOT_STRONG);
-       // if (!loginDto.getRole().matches("USER") && !loginDto.getRole().matches("ADMIN"))
-          //  throw new ValidateUserException(ShoppingConstants.ROLE_INVALID);
         return true;
     }
 
@@ -56,7 +50,7 @@ public class ILoginServiceImp implements ILoginService, UserDetailsService
         Optional<User> optuser = userDao.findById(userId);
 
         if (!optuser.isPresent()) {
-            throw new UserIdException(ShoppingConstants.USER_NOT_FOUND);
+            throw new UserIdException(FixedValues.USER_NOT_FOUND);
 
         }
         userDao.delete(optuser.get());
@@ -75,20 +69,5 @@ public class ILoginServiceImp implements ILoginService, UserDetailsService
         return new MyUserDetails(user);
     }
     
-//    public String login(User login) throws Exception {
-//        try {
-//            Optional<User> u = Optional.of(userDao.getUserByUsername(login.getUserEmail()));
-//            if(u.isPresent()) {
-//                User obj = u.get();
-//                if(login.getPassword().equals(obj.getPassword())) {
-//                    userDao.save(login);
-//                    return obj.getRole();
-//                }
-//            }
-//        }
-//        catch(Exception e) {
-//            throw new Exception("Invalid Credintials");
-//        }
-//        return null;
-//    }
+
 }

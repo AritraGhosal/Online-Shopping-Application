@@ -10,6 +10,11 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import com.cg.onlineshopping_application.exception.*;
+import com.cg.onlineshopping_application.model.Address;
+import com.cg.onlineshopping_application.model.Customer;
+import com.cg.onlineshopping_application.model.Order1;
+import com.cg.onlineshopping_application.model.Product;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -18,10 +23,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cg.onlineshopping_application.OnlineshoppingApplication;
 import com.cg.onlineshopping_application.dto.Order1Dto;
-import com.cg.onlineshopping_application.entity.Address;
-import com.cg.onlineshopping_application.entity.Customer;
-import com.cg.onlineshopping_application.entity.Order1;
-import com.cg.onlineshopping_application.entity.Product;
 import com.cg.onlineshopping_application.repository.IAddressRepository;
 import com.cg.onlineshopping_application.repository.ICustomerRepository;
 import com.cg.onlineshopping_application.repository.IOrderRepository;

@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.onlineshopping_application.dto.AddressDto;
-import com.cg.onlineshopping_application.entity.Address;
-import com.cg.onlineshopping_application.entity.Customer;
 import com.cg.onlineshopping_application.exception.AddressIdException;
 import com.cg.onlineshopping_application.exception.CustomerNotFoundException;
 import com.cg.onlineshopping_application.exception.ValidateAddressException;
+import com.cg.onlineshopping_application.model.Address;
+import com.cg.onlineshopping_application.model.Customer;
 import com.cg.onlineshopping_application.repository.IAddressRepository;
 import com.cg.onlineshopping_application.repository.ICustomerRepository;
-import com.cg.onlineshopping_application.util.ShoppingConstants;
+import com.cg.onlineshopping_application.util.FixedValues;
 
 @Service
 public class IAddressServiceImp implements IAddressService {
@@ -29,7 +29,7 @@ public class IAddressServiceImp implements IAddressService {
 		Address address = new Address();
 		Optional<Customer> optCustomer = customerDao.findById(addressDto.getCustomerId());
 		if (!optCustomer.isPresent())
-			throw new CustomerNotFoundException(ShoppingConstants.CUSTOMER_NOT_FOUND);
+			throw new CustomerNotFoundException(FixedValues.CUSTOMER_NOT_FOUND);
 		address.setStreetNo(addressDto.getStreetNo());
 		address.setBuildingName(addressDto.getBuildingName());
 		address.setCity(addressDto.getCity());
@@ -46,10 +46,10 @@ public class IAddressServiceImp implements IAddressService {
 		validateAddress(addressDto);
 		Optional<Address> optAddress = addressDao.findById(addressDto.getAddressId());
 		if (!optAddress.isPresent())
-			throw new AddressIdException(ShoppingConstants.ADDRESS_NOT_FOUND);
+			throw new AddressIdException(FixedValues.ADDRESS_NOT_FOUND);
 		Optional<Customer> optCustomer = customerDao.findById(addressDto.getCustomerId());
 		if (!optCustomer.isPresent())
-			throw new CustomerNotFoundException(ShoppingConstants.CUSTOMER_NOT_FOUND);
+			throw new CustomerNotFoundException(FixedValues.CUSTOMER_NOT_FOUND);
 		Address address = optAddress.get();
 		Customer customer = optCustomer.get();
 		address.setStreetNo(addressDto.getStreetNo());
@@ -65,18 +65,18 @@ public class IAddressServiceImp implements IAddressService {
 
 	public boolean validateAddress(AddressDto addressDto) throws ValidateAddressException {
 		if (!addressDto.getStreetNo().matches("[A-Za-z0-9]{1,3}")) {
-			throw new ValidateAddressException(ShoppingConstants.STREET_CANNOT_BE_EMPTY);
+			throw new ValidateAddressException(FixedValues.STREET_CANNOT_BE_EMPTY);
 		}
-		if (!addressDto.getBuildingName().matches(ShoppingConstants.ADDRESS_PATTERN))
-			throw new ValidateAddressException(ShoppingConstants.BUILDING_CANNOT_BE_EMPTY);
-		if (!addressDto.getCity().matches(ShoppingConstants.ADDRESS_PATTERN))
-			throw new ValidateAddressException(ShoppingConstants.CITY_CANNOT_BE_EMPTY);
-		if (!addressDto.getCountry().matches(ShoppingConstants.ADDRESS_PATTERN))
-			throw new ValidateAddressException(ShoppingConstants.COUNTRY_CANNOT_BE_EMPTY);
-		if (!addressDto.getState().matches(ShoppingConstants.ADDRESS_PATTERN))
-			throw new ValidateAddressException(ShoppingConstants.STATE_CANNOT_BE_EMPTY);
+		if (!addressDto.getBuildingName().matches(FixedValues.ADDRESS_PATTERN))
+			throw new ValidateAddressException(FixedValues.BUILDING_CANNOT_BE_EMPTY);
+		if (!addressDto.getCity().matches(FixedValues.ADDRESS_PATTERN))
+			throw new ValidateAddressException(FixedValues.CITY_CANNOT_BE_EMPTY);
+		if (!addressDto.getCountry().matches(FixedValues.ADDRESS_PATTERN))
+			throw new ValidateAddressException(FixedValues.COUNTRY_CANNOT_BE_EMPTY);
+		if (!addressDto.getState().matches(FixedValues.ADDRESS_PATTERN))
+			throw new ValidateAddressException(FixedValues.STATE_CANNOT_BE_EMPTY);
 		if (!addressDto.getPincode().matches("[1-9][0-9]{5}"))
-			throw new ValidateAddressException(ShoppingConstants.PINCODE_CANNOT_BE_EMPTY);
+			throw new ValidateAddressException(FixedValues.PINCODE_CANNOT_BE_EMPTY);
 		return true;
 	}
 
@@ -85,7 +85,7 @@ public class IAddressServiceImp implements IAddressService {
 		Optional<Address> optaddress = addressDao.findById(addressId);
 
 		if (!optaddress.isPresent()) {
-			throw new AddressIdException(ShoppingConstants.ADDRESS_NOT_FOUND);
+			throw new AddressIdException(FixedValues.ADDRESS_NOT_FOUND);
 
 		}
 		addressDao.delete(optaddress.get());
@@ -96,7 +96,7 @@ public class IAddressServiceImp implements IAddressService {
 	public Address viewAddress(Integer addressId) throws AddressIdException {
 		Optional<Address> optaddress = addressDao.findById(addressId);
 		if (!optaddress.isPresent()) {
-			throw new AddressIdException(ShoppingConstants.ADDRESS_NOT_FOUND);
+			throw new AddressIdException(FixedValues.ADDRESS_NOT_FOUND);
 
 		}
 		return optaddress.get();
@@ -106,7 +106,7 @@ public class IAddressServiceImp implements IAddressService {
 	public List<Address> viewAllAddress() throws AddressIdException {
 		List<Address> addresslist = addressDao.findAll();
 		if (addresslist.isEmpty())
-			throw new AddressIdException(ShoppingConstants.ADDRESS_NOT_FOUND);
+			throw new AddressIdException(FixedValues.ADDRESS_NOT_FOUND);
 		addresslist.sort((a1, a2) -> a1.getState().compareTo(a2.getState()));
 		return addresslist;
 	}

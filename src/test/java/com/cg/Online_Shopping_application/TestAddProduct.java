@@ -16,10 +16,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cg.onlineshopping_application.OnlineshoppingApplication;
 import com.cg.onlineshopping_application.dto.ProductDto;
-import com.cg.onlineshopping_application.entity.Category;
-import com.cg.onlineshopping_application.entity.Product;
 import com.cg.onlineshopping_application.exception.CategoryNotFoundException;
 import com.cg.onlineshopping_application.exception.ValidateProductException;
+import com.cg.onlineshopping_application.model.Category;
+import com.cg.onlineshopping_application.model.Product;
 import com.cg.onlineshopping_application.repository.ICategoryRepository;
 import com.cg.onlineshopping_application.repository.IProductRepository;
 import com.cg.onlineshopping_application.service.IProductService;

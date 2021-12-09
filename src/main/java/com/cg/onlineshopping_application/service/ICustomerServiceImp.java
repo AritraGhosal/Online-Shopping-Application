@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.onlineshopping_application.dto.CustomerDto;
-import com.cg.onlineshopping_application.entity.Customer;
-import com.cg.onlineshopping_application.entity.User;
 import com.cg.onlineshopping_application.exception.CustomerIdException;
 import com.cg.onlineshopping_application.exception.UserNotFoundException;
 import com.cg.onlineshopping_application.exception.ValidateCustomerException;
+import com.cg.onlineshopping_application.model.Customer;
+import com.cg.onlineshopping_application.model.User;
 import com.cg.onlineshopping_application.repository.ICustomerRepository;
 import com.cg.onlineshopping_application.repository.ILoginRepository;
-import com.cg.onlineshopping_application.util.ShoppingConstants;
+import com.cg.onlineshopping_application.util.FixedValues;
 
 @Service
 public class ICustomerServiceImp implements ICustomerService
@@ -29,7 +29,7 @@ public class ICustomerServiceImp implements ICustomerService
 		Customer customer = new Customer();
 		Optional<User> optUser = userDao.findById(customerDto.getUserId());
 		if (!optUser.isPresent())
-			throw new UserNotFoundException(ShoppingConstants.USER_NOT_FOUND);
+			throw new UserNotFoundException(FixedValues.USER_NOT_FOUND);
 		customer.setFirstName(customerDto.getFirstName());
 		customer.setLastName(customerDto.getLastName());
 		customer.setMobileNumber(customerDto.getMobileNumber());
@@ -40,17 +40,17 @@ public class ICustomerServiceImp implements ICustomerService
 
 	private boolean validateCustomer(CustomerDto customerDto) throws ValidateCustomerException {
 	
-		if (!customerDto.getFirstName().matches(ShoppingConstants.CUSTOMER_PATTERN))
-			throw new ValidateCustomerException(ShoppingConstants.CUSTOMER_CANNOT_BE_EMPTY);
+		if (!customerDto.getFirstName().matches(FixedValues.CUSTOMER_PATTERN))
+			throw new ValidateCustomerException(FixedValues.CUSTOMER_CANNOT_BE_EMPTY);
 		
-		if (!customerDto.getLastName().matches(ShoppingConstants.CUSTOMER_PATTERN))
-			throw new ValidateCustomerException(ShoppingConstants.CUSTOMER_CANNOT_BE_EMPTY);
+		if (!customerDto.getLastName().matches(FixedValues.CUSTOMER_PATTERN))
+			throw new ValidateCustomerException(FixedValues.CUSTOMER_CANNOT_BE_EMPTY);
 		
 		if (!customerDto.getMobileNumber().matches("[1-9][0-9]{9}"))
-			throw new ValidateCustomerException(ShoppingConstants.PHONENUMBER_CANNOT_BE_EMPTY);
+			throw new ValidateCustomerException(FixedValues.PHONENUMBER_CANNOT_BE_EMPTY);
 		
 		if (!customerDto.getEmail().matches("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"))
-			throw new ValidateCustomerException(ShoppingConstants.EMAIL_CANNOT_BE_EMPTY);
+			throw new ValidateCustomerException(FixedValues.EMAIL_CANNOT_BE_EMPTY);
 		return true;
 	}
 
@@ -60,10 +60,10 @@ public class ICustomerServiceImp implements ICustomerService
 		validateCustomer(customerDto);
 		Optional<Customer> optCustomer = customerDao.findById(customerDto.getCustomerId());
 		if (!optCustomer.isPresent())
-			throw new CustomerIdException(ShoppingConstants.CUSTOMER_NOT_FOUND);
+			throw new CustomerIdException(FixedValues.CUSTOMER_NOT_FOUND);
 		Optional<User> optUser = userDao.findById(customerDto.getUserId());
 		if (!optUser.isPresent())
-			throw new UserNotFoundException(ShoppingConstants.USER_NOT_FOUND);
+			throw new UserNotFoundException(FixedValues.USER_NOT_FOUND);
 		Customer customer = optCustomer.get();
 		User user = optUser.get();
 		customer.setFirstName(customerDto.getFirstName());
@@ -85,7 +85,7 @@ public class ICustomerServiceImp implements ICustomerService
 			Optional<Customer> optcustomer = customerDao.findById(customerId);
 
 			if (!optcustomer.isPresent()) {
-				throw new CustomerIdException(ShoppingConstants.CUSTOMER_NOT_FOUND);
+				throw new CustomerIdException(FixedValues.CUSTOMER_NOT_FOUND);
 
 			}
 			customerDao.delete(optcustomer.get());
@@ -99,7 +99,7 @@ public class ICustomerServiceImp implements ICustomerService
 	
 			List<Customer> customerlist = customerDao.findAll();
 			if (customerlist.isEmpty())
-				throw new CustomerIdException(ShoppingConstants.CUSTOMER_NOT_FOUND);
+				throw new CustomerIdException(FixedValues.CUSTOMER_NOT_FOUND);
 			customerlist.sort((a1, a2) -> a1.getFirstName().compareTo(a2.getFirstName()));
 			return customerlist;
 		
@@ -115,7 +115,7 @@ public class ICustomerServiceImp implements ICustomerService
 	public Customer viewCustomerById(Integer customerId) throws CustomerIdException {
 		Optional<Customer> optcustomer = customerDao.findById(customerId);
 		if (!optcustomer.isPresent()) {
-			throw new CustomerIdException(ShoppingConstants.CUSTOMER_NOT_FOUND);
+			throw new CustomerIdException(FixedValues.CUSTOMER_NOT_FOUND);
 
 		}
 		return optcustomer.get();

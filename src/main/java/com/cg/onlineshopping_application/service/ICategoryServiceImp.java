@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.onlineshopping_application.dto.CategoryDto;
-import com.cg.onlineshopping_application.entity.Category;
-import com.cg.onlineshopping_application.entity.Product;
 import com.cg.onlineshopping_application.exception.CategoryIdException;
 import com.cg.onlineshopping_application.exception.ProductIdException;
 import com.cg.onlineshopping_application.exception.ValidateCategoryException;
+import com.cg.onlineshopping_application.model.Category;
+import com.cg.onlineshopping_application.model.Product;
 import com.cg.onlineshopping_application.repository.ICategoryRepository;
-import com.cg.onlineshopping_application.util.ShoppingConstants;
+import com.cg.onlineshopping_application.util.FixedValues;
 
 
 
@@ -43,7 +43,7 @@ public class ICategoryServiceImp implements ICategoryService {
 
     public boolean validateCategory(CategoryDto categoryDto) throws ValidateCategoryException {
         if (categoryDto.getCategoryName()==null) 
-            throw new ValidateCategoryException(ShoppingConstants.CATEGORY_CANNOT_BE_EMPTY);
+            throw new ValidateCategoryException(FixedValues.CATEGORY_CANNOT_BE_EMPTY);
     return true;
  }
 
@@ -52,7 +52,7 @@ public class ICategoryServiceImp implements ICategoryService {
 	public boolean deleteCategory(Integer catId) throws ValidateCategoryException {
 		Optional<Category> optCategory = categoryDao.findById(catId);
 		if(!optCategory.isPresent()) {
-			throw new ValidateCategoryException(ShoppingConstants.CATEGORY_NOT_FOUND);
+			throw new ValidateCategoryException(FixedValues.CATEGORY_NOT_FOUND);
 		}
 		categoryDao.delete(optCategory.get());
 		return true;
@@ -63,7 +63,7 @@ public class ICategoryServiceImp implements ICategoryService {
 	public List<Category> viewCategory() throws ValidateCategoryException {
 		List<Category> categorylist = categoryDao.findAll();
 		if (categorylist.isEmpty())
-		   throw new ValidateCategoryException(ShoppingConstants.CATEGORY_NOT_FOUND);
+		   throw new ValidateCategoryException(FixedValues.CATEGORY_NOT_FOUND);
 		categorylist.sort((a1, a2) -> a1.getCategoryName().compareTo(a2.getCategoryName()));
 		return categorylist;
 	}

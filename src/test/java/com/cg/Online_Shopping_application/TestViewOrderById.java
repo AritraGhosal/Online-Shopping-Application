@@ -13,8 +13,8 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cg.onlineshopping_application.OnlineshoppingApplication;
-import com.cg.onlineshopping_application.entity.Order1;
 import com.cg.onlineshopping_application.exception.OrderIdException;
+import com.cg.onlineshopping_application.model.Order1;
 import com.cg.onlineshopping_application.repository.IOrderRepository;
 import com.cg.onlineshopping_application.service.IOrderService;
 import com.cg.onlineshopping_application.service.IOrderServiceImp;

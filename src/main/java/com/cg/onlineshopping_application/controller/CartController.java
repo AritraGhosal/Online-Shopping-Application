@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.cg.onlineshopping_application.dto.SuccessMessageDto;
-import com.cg.onlineshopping_application.entity.Cart;
 import com.cg.onlineshopping_application.exception.CustomerNotFoundException;
 import com.cg.onlineshopping_application.exception.ProductNotFoundException;
 import com.cg.onlineshopping_application.exception.ValidateCartException;
+import com.cg.onlineshopping_application.model.Cart;
 import com.cg.onlineshopping_application.service.ICartService;
-import com.cg.onlineshopping_application.util.ShoppingConstants;
+import com.cg.onlineshopping_application.util.FixedValues;
 
 
 @RestController
@@ -26,7 +26,7 @@ public class CartController {
 	{
 		cartService.addProductToCart(customerId,productId);
 		
-		return new SuccessMessageDto(ShoppingConstants.CART_ITEM_ADDED);
+		return new SuccessMessageDto(FixedValues.CART_ITEM_ADDED);
 	}
 	
 	@GetMapping("getcartitems/{customerId}")
@@ -39,6 +39,6 @@ public class CartController {
 	public SuccessMessageDto removeCartItem(@PathVariable("cartId") Integer cartId) {
 		
 		cartService.removeProductFromCart(cartId);
-		return new SuccessMessageDto(ShoppingConstants.CART_ITEM_REMOVED);
+		return new SuccessMessageDto(FixedValues.CART_ITEM_REMOVED);
 	}
 }

@@ -2,10 +2,10 @@ package com.cg.onlineshopping_application.service;
 
 import java.util.List;
 
-import com.cg.onlineshopping_application.entity.Cart;
 import com.cg.onlineshopping_application.exception.CustomerNotFoundException;
 import com.cg.onlineshopping_application.exception.ProductNotFoundException;
 import com.cg.onlineshopping_application.exception.ValidateCartException;
+import com.cg.onlineshopping_application.model.Cart;
 
 
 

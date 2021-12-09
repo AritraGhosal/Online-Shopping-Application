@@ -1,4 +1,4 @@
-package com.cg.onlineshopping_application.entity;
+package com.cg.onlineshopping_application.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

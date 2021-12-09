@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.onlineshopping_application.dto.ProductDto;
-import com.cg.onlineshopping_application.entity.Category;
-import com.cg.onlineshopping_application.entity.Product;
 import com.cg.onlineshopping_application.exception.CategoryNotFoundException;
 import com.cg.onlineshopping_application.exception.ProductIdException;
 import com.cg.onlineshopping_application.exception.ValidateProductException;
+import com.cg.onlineshopping_application.model.Category;
+import com.cg.onlineshopping_application.model.Product;
 import com.cg.onlineshopping_application.repository.ICategoryRepository;
 import com.cg.onlineshopping_application.repository.IProductRepository;
-import com.cg.onlineshopping_application.util.ShoppingConstants;
+import com.cg.onlineshopping_application.util.FixedValues;
 
 @Service
 public class IProductServiceImp implements IProductService
@@ -31,7 +31,7 @@ public class IProductServiceImp implements IProductService
     public List<Product> viewAllProducts() throws ValidateProductException {
 		List<Product> productlist = productDao.findAll();
 		if (productlist.isEmpty())
-		   throw new ValidateProductException(ShoppingConstants.PRODUCT_NOT_FOUND);
+		   throw new ValidateProductException(FixedValues.PRODUCT_NOT_FOUND);
 		productlist.sort((a1, a2) -> a1.getProductName().compareTo(a2.getProductName()));
 		return productlist;
 	}
@@ -55,19 +55,19 @@ public class IProductServiceImp implements IProductService
 
 	public boolean validateProduct(ProductDto productDto) throws ValidateProductException {
 		if (productDto.getProductName()==null) 
-			throw new ValidateProductException(ShoppingConstants.PRODUCT_CANNOT_BE_EMPTY);
+			throw new ValidateProductException(FixedValues.PRODUCT_CANNOT_BE_EMPTY);
 		if ((productDto.getPrice())<=0)
-			throw new ValidateProductException(ShoppingConstants.PRICE_CANNOT_BE_EMPTY);
+			throw new ValidateProductException(FixedValues.PRICE_CANNOT_BE_EMPTY);
 		if (productDto.getColor()=="")
-			throw new ValidateProductException(ShoppingConstants.COLOR_CANNOT_BE_EMPTY);
+			throw new ValidateProductException(FixedValues.COLOR_CANNOT_BE_EMPTY);
 		if (productDto.getDimension()=="")
-			throw new ValidateProductException(ShoppingConstants.DIMENSION_CANNOT_BE_EMPTY);
+			throw new ValidateProductException(FixedValues.DIMENSION_CANNOT_BE_EMPTY);
 		if (productDto.getSpecification()=="")
-			throw new ValidateProductException(ShoppingConstants.SPECIFICATION_CANNOT_BE_EMPTY);
+			throw new ValidateProductException(FixedValues.SPECIFICATION_CANNOT_BE_EMPTY);
 		if (productDto.getManufacturer()=="")
-			throw new ValidateProductException(ShoppingConstants.MANUFACTURER_CANNOT_BE_EMPTY);
+			throw new ValidateProductException(FixedValues.MANUFACTURER_CANNOT_BE_EMPTY);
 		if (productDto.getQuantity()<0)
-			throw new ValidateProductException(ShoppingConstants.QUANTITY_CANNOT_BE_EMPTY);
+			throw new ValidateProductException(FixedValues.QUANTITY_CANNOT_BE_EMPTY);
 		return true;
 	}
 	
@@ -94,7 +94,7 @@ public class IProductServiceImp implements IProductService
 	public Product viewProduct(String productName) throws ValidateProductException  {
 		Optional<Product> optproduct = productDao.findProductByProductName(productName);
 		if (!optproduct.isPresent()) {
-			throw new ValidateProductException(ShoppingConstants.PRODUCT_NOT_FOUND);
+			throw new ValidateProductException(FixedValues.PRODUCT_NOT_FOUND);
 
 		}
 		return optproduct.get();
@@ -103,7 +103,7 @@ public class IProductServiceImp implements IProductService
 	@Override
 	public List<Product> viewProductsByCategory(Integer catId) throws ValidateProductException{
 		List<Product> productlist = productDao.findAll();
-		Optional<Category> optCategory = categoryDao.findById(catId);
+		//Optional<Category> optCategory = categoryDao.findById(catId);
 		List<Product> productslist=productlist.stream()
 		.filter(p ->p.getCategory().getCatId()==catId)
 		.collect(Collectors.toList()); 
@@ -114,7 +114,7 @@ public class IProductServiceImp implements IProductService
 	public boolean removeProduct(Integer productId) throws ValidateProductException{
 		Optional<Product> optProduct = productDao.findById(productId);
 		if(!optProduct.isPresent()) {
-			throw new ValidateProductException(ShoppingConstants.PRODUCT_NOT_FOUND);
+			throw new ValidateProductException(FixedValues.PRODUCT_NOT_FOUND);
 		}
 		productDao.delete(optProduct.get());
 		return true;

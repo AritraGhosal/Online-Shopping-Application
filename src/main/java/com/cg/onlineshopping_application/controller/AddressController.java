@@ -15,19 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlineshopping_application.dto.AddressDto;
 import com.cg.onlineshopping_application.dto.SuccessMessageDto;
-import com.cg.onlineshopping_application.entity.Address;
-import com.cg.onlineshopping_application.entity.Customer;
 import com.cg.onlineshopping_application.exception.AddressIdException;
 import com.cg.onlineshopping_application.exception.CustomerNotFoundException;
 import com.cg.onlineshopping_application.exception.ValidateAddressException;
+import com.cg.onlineshopping_application.model.Address;
+import com.cg.onlineshopping_application.model.Customer;
 import com.cg.onlineshopping_application.service.IAddressServiceImp;
-import com.cg.onlineshopping_application.util.ShoppingConstants;
-
+import com.cg.onlineshopping_application.util.FixedValues;
 
 
 @RestController
 @RequestMapping("/address")
-//@CrossOrigin
 public class AddressController 
 {
     @Autowired
@@ -45,14 +43,14 @@ public class AddressController
     public SuccessMessageDto removeAddress(@PathVariable("id") Integer addressId) throws AddressIdException
     {
         addressService.removeAddress(addressId);
-        return new SuccessMessageDto(ShoppingConstants.ADDRESS_REMOVED);
+        return new SuccessMessageDto(FixedValues.ADDRESS_REMOVED);
     }
     
     @PutMapping("/updateaddress")
     public SuccessMessageDto updateAddress(@RequestBody AddressDto addressdto) throws AddressIdException, ValidateAddressException, CustomerNotFoundException 
     {
         Address address=addressService.updateAddress(addressdto);
-        return new SuccessMessageDto(ShoppingConstants.ADDRESS_UPDATED+address.getAddressId());
+        return new SuccessMessageDto(FixedValues.ADDRESS_UPDATED+address.getAddressId());
     }
     
     @GetMapping("/getaddressbyid/{addressId}")

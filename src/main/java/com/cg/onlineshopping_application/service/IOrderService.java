@@ -3,8 +3,8 @@ package com.cg.onlineshopping_application.service;
 import java.util.List;
 
 import com.cg.onlineshopping_application.dto.Order1Dto;
-import com.cg.onlineshopping_application.entity.Order1;
 import com.cg.onlineshopping_application.exception.*;
+import com.cg.onlineshopping_application.model.Order1;
 
 public interface IOrderService {
 	public Order1 addOrder(Order1Dto order1Dto) throws ValidateOrderException, CustomerNotFoundException, AddressNotFoundException, ProductNotFoundException, CartNotFoundException;

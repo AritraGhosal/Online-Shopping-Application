@@ -1,8 +1,8 @@
 package com.cg.onlineshopping_application.util;
 
-public class ShoppingConstants {
+public class FixedValues {
 	
-	ShoppingConstants(){}
+	FixedValues(){}
 	
 	public static final String ADDRESS_NOT_FOUND="Address not found!";
 	public static final String ADDRESS_UPDATED="Address updated successfully for the ID ";

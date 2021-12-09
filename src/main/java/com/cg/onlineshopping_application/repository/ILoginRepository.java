@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.cg.onlineshopping_application.entity.User;
+import com.cg.onlineshopping_application.model.User;
 
 public interface ILoginRepository extends JpaRepository<User,Integer>{
 

@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.cg.onlineshopping_application.entity.User;
+import com.cg.onlineshopping_application.model.User;
 
 @SuppressWarnings("serial")
 public class MyUserDetails implements UserDetails {

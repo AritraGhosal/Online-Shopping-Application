@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.cg.onlineshopping_application.entity.Product;
+import com.cg.onlineshopping_application.model.Product;
 
 public interface IProductRepository extends JpaRepository<Product,Integer>{
 

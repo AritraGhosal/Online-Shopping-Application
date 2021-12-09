@@ -1,4 +1,4 @@
-package com.cg.onlineshopping_application.entity;
+package com.cg.onlineshopping_application.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,12 +34,7 @@ public class Product
 	
 	@ManyToOne
 	private Category category;
-	
 
-	//@OneToOne(mappedBy="product") private Cart cart;
-
-
-	
 	public Integer getProductId() {
 		return productId;
 	}
@@ -111,11 +106,4 @@ public class Product
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-
-	//public Cart getCart() { return cart; }
-
-	 //public void setCart(Cart cart) { this.cart = cart; }
-
-
-
 }

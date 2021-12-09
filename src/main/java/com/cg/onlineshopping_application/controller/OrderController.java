@@ -3,6 +3,8 @@ package com.cg.onlineshopping_application.controller;
 import java.util.List;
 
 import com.cg.onlineshopping_application.exception.*;
+import com.cg.onlineshopping_application.model.Order1;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlineshopping_application.dto.Order1Dto;
 import com.cg.onlineshopping_application.dto.SuccessMessageDto;
-import com.cg.onlineshopping_application.entity.Order1;
 import com.cg.onlineshopping_application.service.IOrderServiceImp;
-import com.cg.onlineshopping_application.util.ShoppingConstants;
+import com.cg.onlineshopping_application.util.FixedValues;
 
 @RestController
 @RequestMapping("/order")
@@ -30,21 +31,21 @@ public class OrderController
 	public SuccessMessageDto addOrder(@RequestBody Order1Dto order1Dto) throws ValidateOrderException, CustomerNotFoundException,AddressNotFoundException, CartNotFoundException
 	{
 		Order1 order1= orderService.addOrder(order1Dto);
-		return new SuccessMessageDto(ShoppingConstants.ORDER_ADDED+ order1.getOrdId());
+		return new SuccessMessageDto(FixedValues.ORDER_ADDED+ order1.getOrdId());
 	}
 	
 	@DeleteMapping("/removeorder/{id}")
 		public SuccessMessageDto removeOrder(@PathVariable("id") Integer ordId) throws OrderIdException
 		{
 			orderService.removeOrder(ordId);
-			return new SuccessMessageDto(ShoppingConstants.ORDER_REMOVED);
+			return new SuccessMessageDto(FixedValues.ORDER_REMOVED);
 		}
 	
 	@PutMapping("/updateorder")
 	public SuccessMessageDto updateOrder(@RequestBody Order1Dto order1Dto) throws OrderIdException, ValidateOrderException, CustomerNotFoundException, CartNotFoundException, AddressNotFoundException
 	{
 		Order1 order1=orderService.updateOrder(order1Dto);
-		return new SuccessMessageDto(ShoppingConstants.ORDER_UPDATED+order1.getOrdId());
+		return new SuccessMessageDto(FixedValues.ORDER_UPDATED+order1.getOrdId());
 	}
 	
 	@GetMapping("/getorderbyid/{id}")

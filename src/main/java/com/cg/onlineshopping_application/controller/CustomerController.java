@@ -17,17 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlineshopping_application.dto.CustomerDto;
 import com.cg.onlineshopping_application.dto.SuccessMessageDto;
-import com.cg.onlineshopping_application.entity.Customer;
-import com.cg.onlineshopping_application.entity.Product;
 import com.cg.onlineshopping_application.exception.CustomerIdException;
 import com.cg.onlineshopping_application.exception.UserNotFoundException;
 import com.cg.onlineshopping_application.exception.ValidateCustomerException;
+import com.cg.onlineshopping_application.model.Customer;
+import com.cg.onlineshopping_application.model.Product;
 import com.cg.onlineshopping_application.service.ICustomerServiceImp;
-import com.cg.onlineshopping_application.util.ShoppingConstants;
+import com.cg.onlineshopping_application.util.FixedValues;
 
 @RestController
 @RequestMapping("/customer")
-@CrossOrigin
 public class CustomerController 
 {
     
@@ -39,28 +38,21 @@ public class CustomerController
         public SuccessMessageDto addCustomer(@RequestBody CustomerDto customerDto) throws ValidateCustomerException, UserNotFoundException
         {
             Customer customer= customerService.addCustomer(customerDto);
-            return new SuccessMessageDto(ShoppingConstants.CUSTOMER_ADDED+ customer.getCustomerId());
+            return new SuccessMessageDto(FixedValues.CUSTOMER_ADDED+ customer.getCustomerId());
         }
-        
-        /*@PostMapping("/addcustomer")
-        public Customer addCustomer(@RequestBody CustomerDto customerDto) throws ValidateCustomerException, UserNotFoundException
-        {
-            Customer customer= customerService.addCustomer(customerDto);
-            return customer;
-        }*/
         
         @DeleteMapping("/removecustomer/{id}")
         public SuccessMessageDto removeCustomer(@PathVariable("id") Integer id) throws CustomerIdException
         {
             customerService.removeCustomer(id);
-            return new SuccessMessageDto(ShoppingConstants.CUSTOMER_REMOVED);
+            return new SuccessMessageDto(FixedValues.CUSTOMER_REMOVED);
         }
         
         @PutMapping("/updatecustomer")
         public SuccessMessageDto updateCustomer(@RequestBody CustomerDto add) throws CustomerIdException, ValidateCustomerException, UserNotFoundException 
         {
             Customer customer=customerService.updateCustomer(add);
-            return new SuccessMessageDto(ShoppingConstants.CUSTOMER_UPDATED+customer.getCustomerId());
+            return new SuccessMessageDto(FixedValues.CUSTOMER_UPDATED+customer.getCustomerId());
         }
         
         @GetMapping("/getcustomerbyid/{customerId}")

@@ -14,8 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.cg.onlineshopping_application.OnlineshoppingApplication;
 import com.cg.onlineshopping_application.dto.LoginDto;
-import com.cg.onlineshopping_application.entity.User;
 import com.cg.onlineshopping_application.exception.ValidateUserException;
+import com.cg.onlineshopping_application.model.User;
 import com.cg.onlineshopping_application.repository.ILoginRepository;
 import com.cg.onlineshopping_application.service.ILoginService;
 import com.cg.onlineshopping_application.service.ILoginServiceImp;

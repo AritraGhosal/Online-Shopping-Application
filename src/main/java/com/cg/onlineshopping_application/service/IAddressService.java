@@ -3,11 +3,11 @@ package com.cg.onlineshopping_application.service;
 import java.util.List;
 
 import com.cg.onlineshopping_application.dto.AddressDto;
-import com.cg.onlineshopping_application.entity.Address;
-import com.cg.onlineshopping_application.entity.Customer;
 import com.cg.onlineshopping_application.exception.AddressIdException;
 import com.cg.onlineshopping_application.exception.CustomerNotFoundException;
 import com.cg.onlineshopping_application.exception.ValidateAddressException;
+import com.cg.onlineshopping_application.model.Address;
+import com.cg.onlineshopping_application.model.Customer;
 
 public interface IAddressService {
 
